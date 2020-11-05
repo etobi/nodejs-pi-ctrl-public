@@ -1,0 +1,33 @@
+{
+  "mqtt": {
+    "url": "mqtt://127.0.0.1",
+    "options": {
+      "will": {
+        "topic": "pi-ctrl/status",
+        "payload": "offline",
+        "retain": true
+      }
+    },
+    "onlinemessage": {
+      "topic": "pi-ctrl/status",
+      "payload": "online",
+      "retain": true
+    },
+  },
+  "commands": [
+    {
+      "topic": "pi-ctrl/cmnd/display",
+      "statustopic": "pi-ctrl/state/display",
+      "messages": [
+        {
+          "value": "OFF",
+          "exec": "vcgencmd display_power 0"
+        },
+        {
+          "value": "ON",
+          "exec": "vcgencmd display_power 1"
+        }
+      ]
+    }
+  ]
+}
